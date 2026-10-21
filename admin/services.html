@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخدمات - لوحة التحكم</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; }
+        .admin-wrapper { display: flex; min-height: 100vh; }
+        .sidebar { width: 260px; background: linear-gradient(180deg, #667eea 0%, #764ba2 100%); color: white; padding: 24px 16px; position: fixed; top: 0; right: 0; bottom: 0; overflow-y: auto; }
+        .sidebar-logo { text-align: center; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 24px; }
+        .sidebar-logo h2 { font-size: 22px; } .sidebar-logo small { opacity: 0.7; font-size: 12px; }
+        .nav-list { list-style: none; } .nav-list li { margin-bottom: 4px; }
+        .nav-list a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: rgba(255,255,255,0.8); text-decoration: none; border-radius: 10px; transition: all 0.3s; }
+        .nav-list a:hover, .nav-list a.active { background: rgba(255,255,255,0.2); color: white; }
+        .nav-list i { font-size: 20px; }
+        .main-content { flex: 1; margin-right: 260px; padding: 30px; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 12px; }
+        .page-header h1 { font-size: 28px; color: #333; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: #f0f0f0; color: #666; padding: 10px 20px; border-radius: 10px; text-decoration: none; }
+        .service-card { background: white; padding: 24px; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 16px; border-right: 4px solid #667eea; }
+        .service-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .service-header h3 { display: flex; align-items: center; gap: 8px; color: #333; }
+        .service-header .delete-btn { width: 32px; height: 32px; border: none; background: #fee; color: #c33; border-radius: 8px; cursor: pointer; }
+        .service-header .delete-btn:hover { background: #c33; color: white; }
+        .svc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .svc-field { margin-bottom: 12px; }
+        .svc-field label { display: block; margin-bottom: 4px; color: #777; font-size: 13px; font-weight: 600; }
+        .svc-field input, .svc-field textarea { width: 100%; padding: 10px 12px; border: 2px solid #e8e8e8; border-radius: 8px; font-size: 14px; }
+        .svc-field input:focus, .svc-field textarea:focus { outline: none; border-color: #667eea; }
+        .svc-field textarea { resize: vertical; min-height: 70px; }
+        .icon-select { display: flex; gap: 6px; flex-wrap: wrap; }
+        .icon-option { width: 40px; height: 40px; border: 2px solid #eee; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; transition: all 0.2s; }
+        .icon-option:hover { border-color: #667eea; }
+        .icon-option.selected { border-color: #667eea; background: #eef; }
+        .add-service-btn { display: flex; align-items: center; gap: 8px; padding: 16px; background: white; border: 2px dashed #d0d5dd; border-radius: 16px; cursor: pointer; color: #667eea; font-size: 16px; font-weight: 600; justify-content: center; transition: all 0.2s; width: 100%; }
+        .add-service-btn:hover { border-color: #667eea; background: #f8f9ff; }
+        .btn-save { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 14px 32px; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 20px; }
+        .btn-save:hover { transform: translateY(-2px); }
+        .btn-save:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .status-msg { padding: 14px; border-radius: 10px; margin-bottom: 20px; display: none; font-weight: 500; }
+        .status-msg.success { display: block; background: #efe; color: #2a7; }
+        .status-msg.error { display: block; background: #fee; color: #c33; }
+        .auth-gate { text-align: center; padding: 100px 20px; color: #666; }
+        .auth-gate i { font-size: 60px; color: #ccc; margin-bottom: 16px; display: block; }
+        @media (max-width: 768px) { .sidebar { position: static; width: 100%; } .main-content { margin-right: 0; } .svc-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="authGate" class="auth-gate"><i class='bx bx-loader-alt bx-spin'></i><h2>جاري التحقق...</h2></div>
+    <div id="pageContent" class="admin-wrapper" style="display:none">
+        <aside class="sidebar">
+            <div class="sidebar-logo"><h2>🎛️ لوحة التحكم</h2><small>M. El-Deeb Portfolio</small></div>
+            <nav><ul class="nav-list">
+                <li><a href="dashboard.html"><i class='bx bxs-dashboard'></i> الرئيسية</a></li>
+                <li><a href="projects.html"><i class='bx bxs-briefcase'></i> المشاريع</a></li>
+                <li><a href="hero.html"><i class='bx bx-home'></i> القسم الرئيسي</a></li>
+                <li><a href="services.html" class="active"><i class='bx bx-star'></i> الخدمات</a></li>
+                <li><a href="contact-settings.html"><i class='bx bx-envelope'></i> التواصل</a></li>
+                <li><a href="cv.html"><i class='bx bx-file'></i> السيرة الذاتية</a></li>
+                <li><a href="portfolios.html"><i class='bx bx-collection'></i> ملفات العرض</a></li>
+                <li><a href="settings.html"><i class='bx bx-cog'></i> الإعدادات</a></li>
+                <li><a href="../index.html" target="_blank"><i class='bx bx-external-link'></i> عرض الموقع</a></li>
+            </ul></nav>
+        </aside>
+        <main class="main-content">
+            <div class="page-header">
+                <h1>💼 الخدمات</h1>
+                <a href="dashboard.html" class="back-btn"><i class='bx bx-arrow-back'></i> العودة</a>
+            </div>
+            <div id="statusMsg" class="status-msg"></div>
+            <div id="servicesList"></div>
+            <button class="add-service-btn" onclick="addService()"><i class='bx bx-plus-circle'></i> إضافة خدمة جديدة</button>
+            <button class="btn-save" id="saveBtn" onclick="saveServices()"><i class='bx bx-save'></i> حفظ الخدمات</button>
+        </main>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script>
+        firebase.initializeApp({ apiKey:"AIzaSyDLCKGAbYvH0Ifgp3Vp5M4LQm7Q406uiPw", authDomain:"portfolio-6ed42.firebaseapp.com", projectId:"portfolio-6ed42", storageBucket:"portfolio-6ed42.firebasestorage.app", messagingSenderId:"140699165995", appId:"1:140699165995:web:c6e78e258fe041c554916e" });
+        const auth = firebase.auth(), db = firebase.firestore();
+        const ICONS = ['bx-target-lock','bx-line-chart','bx-brain','bx-share-alt','bx-trending-up','bx-search','bx-envelope','bx-cart','bx-video','bx-palette','bx-code-alt','bx-world'];
+        let serviceCounter = 0;
+
+        auth.onAuthStateChanged(u => { if (!u) { window.location.href='index.html'; return; } document.getElementById('authGate').style.display='none'; document.getElementById('pageContent').style.display='flex'; loadServices(); });
+
+        async function loadServices() {
+            try {
+                const doc = await db.collection('content').doc('services').get();
+                if (doc.exists && doc.data().items) {
+                    doc.data().items.forEach(s => addService(s));
+                } else {
+                    // Default services
+                    [
+                        { icon:'bx-target-lock', titleEn:'Media Buying & Ads', titleAr:'إدارة الحملات الإعلانية', descEn:'High-performance campaigns on Meta, Google, & TikTok.', descAr:'حملات عالية الأداء على فيسبوك، جوجل، وتيك توك.' },
+                        { icon:'bx-line-chart', titleEn:'Advanced Analytics', titleAr:'تحليل البيانات', descEn:'Transforming raw numbers into actionable growth strategies.', descAr:'تحويل الأرقام إلى خطط نمو عملية.' },
+                        { icon:'bx-brain', titleEn:'AI & Automation', titleAr:'الذكاء الاصطناعي والأتمتة', descEn:'Leveraging AI for content and audience targeting.', descAr:'استخدام أدوات الذكاء الاصطناعي لتحسين المحتوى.' },
+                        { icon:'bx-share-alt', titleEn:'Social Media Growth', titleAr:'نمو السوشيال ميديا', descEn:'Building authentic communities for brand loyalty.', descAr:'بناء مجتمع حقيقي حول علامتك التجارية.' }
+                    ].forEach(s => addService(s));
+                }
+            } catch(e) { console.error(e); }
+        }
+
+        function addService(data = {}) {
+            const id = serviceCounter++;
+            const list = document.getElementById('servicesList');
+            const card = document.createElement('div');
+            card.className = 'service-card';
+            card.id = 'svc_' + id;
+            const selectedIcon = data.icon || 'bx-target-lock';
+            card.innerHTML = `
+                <div class="service-header">
+                    <h3><i class='bx ${selectedIcon}'></i> خدمة ${id + 1}</h3>
+                    <button class="delete-btn" onclick="this.closest('.service-card').remove()" title="حذف"><i class='bx bx-trash'></i></button>
+                </div>
+                <div class="svc-field">
+                    <label>الأيقونة</label>
+                    <div class="icon-select">
+                        ${ICONS.map(ic => `<div class="icon-option ${ic === selectedIcon ? 'selected' : ''}" data-icon="${ic}" onclick="selectIcon(this)"><i class='bx ${ic}'></i></div>`).join('')}
+                    </div>
+                    <input type="hidden" class="svc-icon" value="${selectedIcon}">
+                </div>
+                <div class="svc-row">
+                    <div class="svc-field"><label>الاسم (English)</label><input type="text" class="svc-title-en" value="${data.titleEn || ''}"></div>
+                    <div class="svc-field"><label>الاسم (عربي)</label><input type="text" class="svc-title-ar" value="${data.titleAr || ''}"></div>
+                </div>
+                <div class="svc-row">
+                    <div class="svc-field"><label>الوصف (English)</label><textarea class="svc-desc-en">${data.descEn || ''}</textarea></div>
+                    <div class="svc-field"><label>الوصف (عربي)</label><textarea class="svc-desc-ar">${data.descAr || ''}</textarea></div>
+                </div>
+            `;
+            list.appendChild(card);
+        }
+
+        function selectIcon(el) {
+            const card = el.closest('.service-card');
+            card.querySelectorAll('.icon-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            card.querySelector('.svc-icon').value = el.dataset.icon;
+            card.querySelector('.service-header i').className = 'bx ' + el.dataset.icon;
+        }
+
+        async function saveServices() {
+            const btn = document.getElementById('saveBtn');
+            btn.disabled = true; btn.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> جاري الحفظ...';
+            const cards = document.querySelectorAll('.service-card');
+            const items = [];
+            cards.forEach(c => {
+                items.push({
+                    icon: c.querySelector('.svc-icon').value,
+                    titleEn: c.querySelector('.svc-title-en').value.trim(),
+                    titleAr: c.querySelector('.svc-title-ar').value.trim(),
+                    descEn: c.querySelector('.svc-desc-en').value.trim(),
+                    descAr: c.querySelector('.svc-desc-ar').value.trim()
+                });
+            });
+            try {
+                await db.collection('content').doc('services').set({ items, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+                showMsg('✅ تم حفظ الخدمات بنجاح!', 'success');
+            } catch(e) { showMsg('❌ خطأ: ' + e.message, 'error'); }
+            btn.disabled = false; btn.innerHTML = '<i class="bx bx-save"></i> حفظ الخدمات';
+        }
+        function showMsg(m,t) { const el=document.getElementById('statusMsg'); el.textContent=m; el.className='status-msg '+t; window.scrollTo({top:0,behavior:'smooth'}); }
+    </script>
+</body>
+</html>
