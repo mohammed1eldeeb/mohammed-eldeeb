@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المشاريع - لوحة التحكم</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; }
+        .admin-wrapper { display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: 260px; background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 24px 16px; position: fixed; top: 0; right: 0; bottom: 0; overflow-y: auto;
+        }
+        .sidebar-logo { text-align: center; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 24px; }
+        .sidebar-logo h2 { font-size: 22px; }
+        .sidebar-logo small { opacity: 0.7; font-size: 12px; }
+        .nav-list { list-style: none; }
+        .nav-list li { margin-bottom: 4px; }
+        .nav-list a {
+            display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+            color: rgba(255,255,255,0.8); text-decoration: none; border-radius: 10px; transition: all 0.3s;
+        }
+        .nav-list a:hover, .nav-list a.active { background: rgba(255,255,255,0.2); color: white; }
+        .nav-list i { font-size: 20px; }
+
+        .main-content { flex: 1; margin-right: 260px; padding: 30px; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+        .page-header h1 { font-size: 28px; color: #333; }
+        .add-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 24px;
+            border-radius: 10px; text-decoration: none; font-weight: 600; transition: transform 0.2s;
+        }
+        .add-btn:hover { transform: translateY(-2px); }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 4px; margin-bottom: 24px; background: white; border-radius: 12px; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .tab-btn {
+            padding: 10px 20px; border: none; background: transparent; border-radius: 10px;
+            cursor: pointer; font-size: 14px; font-weight: 500; color: #888; transition: all 0.2s;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .tab-btn.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .tab-btn:hover:not(.active) { background: #f5f5f5; color: #333; }
+        .tab-count { background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 10px; font-size: 12px; }
+        .tab-btn:not(.active) .tab-count { background: #eee; }
+
+        /* Project Cards */
+        .projects-list { display: flex; flex-direction: column; gap: 12px; }
+        .project-row {
+            display: flex; align-items: center; gap: 16px; padding: 16px 20px;
+            background: white; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+        .project-row:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-1px); }
+        .project-row.draft { border-right: 4px solid #ffc107; }
+        .project-row.trashed { opacity: 0.6; }
+        .project-row.archived { border-right: 4px solid #6c757d; }
+
+        .project-thumb { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; background: #f0f0f0; flex-shrink: 0; }
+        .project-info { flex: 1; min-width: 0; }
+        .project-info h3 { font-size: 16px; color: #333; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .project-info .meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px;
+            border-radius: 20px; font-size: 12px; font-weight: 500;
+        }
+        .badge-cat { background: #f0f9ff; color: #0369a1; }
+        .badge-draft { background: #fff3cd; color: #856404; }
+        .badge-published { background: #d4edda; color: #155724; }
+        .badge-date { color: #999; font-size: 12px; }
+
+        .project-actions { display: flex; gap: 6px; flex-shrink: 0; }
+        .action-btn {
+            width: 36px; height: 36px; border: none; border-radius: 8px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; font-size: 16px;
+        }
+        .btn-edit { background: #e3f2fd; color: #1976d2; }
+        .btn-edit:hover { background: #1976d2; color: white; }
+        .btn-archive { background: #f5f5f5; color: #757575; }
+        .btn-archive:hover { background: #757575; color: white; }
+        .btn-trash { background: #fee; color: #c33; }
+        .btn-trash:hover { background: #c33; color: white; }
+        .btn-restore { background: #e8f5e9; color: #2e7d32; }
+        .btn-restore:hover { background: #2e7d32; color: white; }
+        .btn-delete-forever { background: #ffebee; color: #b71c1c; }
+        .btn-delete-forever:hover { background: #b71c1c; color: white; }
+
+        /* Empty State */
+        .empty-state { text-align: center; padding: 80px 20px; color: #aaa; }
+        .empty-state i { font-size: 64px; margin-bottom: 16px; display: block; }
+        .empty-state h3 { color: #666; margin-bottom: 8px; }
+
+        /* Modal */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-overlay.show { display: flex; }
+        .modal {
+            background: white; padding: 30px; border-radius: 16px; max-width: 420px; width: 90%; text-align: center;
+        }
+        .modal-icon { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px; }
+        .modal-icon.danger { background: #fee; color: #c33; }
+        .modal-icon.warning { background: #fff3cd; color: #856404; }
+        .modal h3 { margin-bottom: 10px; color: #333; }
+        .modal p { color: #888; margin-bottom: 24px; line-height: 1.6; }
+        .modal-btns { display: flex; gap: 12px; justify-content: center; }
+        .modal-btn {
+            padding: 12px 24px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 15px;
+        }
+        .modal-btn.cancel { background: #f0f0f0; color: #666; }
+        .modal-btn.confirm { background: #c33; color: white; }
+        .modal-btn.confirm:hover { background: #a00; }
+
+        /* Loading */
+        .loading-state { text-align: center; padding: 60px; color: #888; }
+
+        .auth-gate { text-align: center; padding: 100px 20px; color: #666; }
+        .auth-gate i { font-size: 60px; color: #ccc; margin-bottom: 16px; display: block; }
+
+        @media (max-width: 768px) {
+            .sidebar { position: static; width: 100%; }
+            .main-content { margin-right: 0; }
+            .tabs { overflow-x: auto; }
+            .project-row { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <div id="authGate" class="auth-gate"><i class='bx bx-loader-alt bx-spin'></i><h2>جاري التحقق...</h2></div>
+
+    <!-- Delete Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <div class="modal-icon danger"><i class='bx bx-trash'></i></div>
+            <h3 id="modalTitle">حذف نهائي</h3>
+            <p id="modalMsg">هل أنت متأكد؟ لا يمكن التراجع عن هذا الإجراء.</p>
+            <div class="modal-btns">
+                <button class="modal-btn cancel" onclick="closeModal()">إلغاء</button>
+                <button class="modal-btn confirm" id="modalConfirmBtn">حذف</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageContent" class="admin-wrapper" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-logo"><h2>🎛️ لوحة التحكم</h2><small>M. El-Deeb Portfolio</small></div>
+            <nav><ul class="nav-list">
+                <li><a href="dashboard.html"><i class='bx bxs-dashboard'></i> الرئيسية</a></li>
+                <li><a href="projects.html" class="active"><i class='bx bxs-briefcase'></i> المشاريع</a></li>
+                <li><a href="add-project.html"><i class='bx bx-plus-circle'></i> إضافة مشروع</a></li>
+                <li><a href="../index.html" target="_blank"><i class='bx bx-external-link'></i> عرض الموقع</a></li>
+            </ul></nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>📁 إدارة المشاريع</h1>
+                <a href="add-project.html" class="add-btn"><i class='bx bx-plus'></i> مشروع جديد</a>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="active" onclick="switchTab('active')">
+                    <i class='bx bx-check-circle'></i> المنشورة <span class="tab-count" id="countActive">0</span>
+                </button>
+                <button class="tab-btn" data-tab="draft" onclick="switchTab('draft')">
+                    <i class='bx bx-edit'></i> مسودات <span class="tab-count" id="countDraft">0</span>
+                </button>
+                <button class="tab-btn" data-tab="archived" onclick="switchTab('archived')">
+                    <i class='bx bx-archive'></i> أرشيف <span class="tab-count" id="countArchived">0</span>
+                </button>
+                <button class="tab-btn" data-tab="trashed" onclick="switchTab('trashed')">
+                    <i class='bx bx-trash'></i> سلة المهملات <span class="tab-count" id="countTrashed">0</span>
+                </button>
+            </div>
+
+            <!-- Projects List -->
+            <div id="loadingState" class="loading-state">
+                <i class='bx bx-loader-alt bx-spin' style="font-size:40px"></i>
+                <p>جاري تحميل المشاريع...</p>
+            </div>
+            <div class="projects-list" id="projectsList"></div>
+            <div class="empty-state" id="emptyState" style="display:none">
+                <i class='bx bx-folder-open'></i>
+                <h3 id="emptyTitle">لا توجد مشاريع</h3>
+                <p id="emptyDesc">ابدأ بإضافة أول مشروع</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        firebase.initializeApp({
+            apiKey: "AIzaSyDLCKGAbYvH0Ifgp3Vp5M4LQm7Q406uiPw",
+            authDomain: "portfolio-6ed42.firebaseapp.com",
+            projectId: "portfolio-6ed42",
+            storageBucket: "portfolio-6ed42.firebasestorage.app",
+            messagingSenderId: "140699165995",
+            appId: "1:140699165995:web:c6e78e258fe041c554916e"
+        });
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let allProjects = [];
+        let currentTab = 'active';
+        let pendingAction = null;
+
+        // Auth
+        auth.onAuthStateChanged(function(user) {
+            if (!user) { window.location.href = 'index.html'; return; }
+            document.getElementById('authGate').style.display = 'none';
+            document.getElementById('pageContent').style.display = 'flex';
+            loadProjects();
+        });
+
+        // Load Projects
+        async function loadProjects() {
+            try {
+                const snap = await db.collection('projects').orderBy('order', 'desc').get();
+                allProjects = [];
+                snap.forEach(doc => allProjects.push({ id: doc.id, ...doc.data() }));
+
+                // Fix old projects without state
+                allProjects.forEach(p => {
+                    if (!p.state) p.state = 'active';
+                    if (!p.status) p.status = 'published';
+                });
+
+                updateCounts();
+                renderProjects();
+                document.getElementById('loadingState').style.display = 'none';
+            } catch (e) {
+                console.error('Error:', e);
+                document.getElementById('loadingState').innerHTML = '<p style="color:red">خطأ في التحميل: ' + e.message + '</p>';
+            }
+        }
+
+        function updateCounts() {
+            document.getElementById('countActive').textContent = allProjects.filter(p => p.state === 'active' && p.status === 'published').length;
+            document.getElementById('countDraft').textContent = allProjects.filter(p => p.state === 'active' && p.status === 'draft').length;
+            document.getElementById('countArchived').textContent = allProjects.filter(p => p.state === 'archived').length;
+            document.getElementById('countTrashed').textContent = allProjects.filter(p => p.state === 'trashed').length;
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+            renderProjects();
+        }
+
+        function getFilteredProjects() {
+            switch (currentTab) {
+                case 'active': return allProjects.filter(p => p.state === 'active' && p.status === 'published');
+                case 'draft': return allProjects.filter(p => p.state === 'active' && p.status === 'draft');
+                case 'archived': return allProjects.filter(p => p.state === 'archived');
+                case 'trashed': return allProjects.filter(p => p.state === 'trashed');
+            }
+        }
+
+        function renderProjects() {
+            const list = document.getElementById('projectsList');
+            const empty = document.getElementById('emptyState');
+            const filtered = getFilteredProjects();
+
+            if (filtered.length === 0) {
+                list.innerHTML = '';
+                empty.style.display = 'block';
+                const titles = { active: 'لا توجد مشاريع منشورة', draft: 'لا توجد مسودات', archived: 'لا توجد مشاريع في الأرشيف', trashed: 'سلة المهملات فارغة' };
+                document.getElementById('emptyTitle').textContent = titles[currentTab];
+                return;
+            }
+
+            empty.style.display = 'none';
+            list.innerHTML = filtered.map(p => {
+                const thumb = p.images && p.images.length > 0 ? p.images[0] : 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"><rect fill="%23eee" width="70" height="70"/><text x="50%" y="55%" text-anchor="middle" fill="%23bbb" font-size="12">📁</text></svg>';
+                const date = p.createdAt ? p.createdAt.toDate().toLocaleDateString('ar-EG') : '--';
+                const rowClass = p.status === 'draft' ? 'draft' : (p.state === 'trashed' ? 'trashed' : (p.state === 'archived' ? 'archived' : ''));
+
+                let actions = '';
+                if (currentTab === 'trashed') {
+                    actions = `
+                        <button class="action-btn btn-restore" title="استرجاع" onclick="restoreProject('${p.id}')"><i class='bx bx-undo'></i></button>
+                        <button class="action-btn btn-delete-forever" title="حذف نهائي" onclick="deleteForever('${p.id}', '${p.title}')"><i class='bx bx-x-circle'></i></button>
+                    `;
+                } else if (currentTab === 'archived') {
+                    actions = `
+                        <button class="action-btn btn-restore" title="إعادة نشر" onclick="restoreProject('${p.id}')"><i class='bx bx-undo'></i></button>
+                        <button class="action-btn btn-trash" title="حذف" onclick="trashProject('${p.id}')"><i class='bx bx-trash'></i></button>
+                    `;
+                } else {
+                    actions = `
+                        <button class="action-btn btn-archive" title="أرشفة" onclick="archiveProject('${p.id}')"><i class='bx bx-archive-in'></i></button>
+                        <button class="action-btn btn-trash" title="حذف" onclick="trashProject('${p.id}')"><i class='bx bx-trash'></i></button>
+                    `;
+                }
+
+                return `
+                    <div class="project-row ${rowClass}">
+                        <img src="${thumb}" class="project-thumb" onerror="this.style.background='#f0f0f0'">
+                        <div class="project-info">
+                            <h3>${p.title || 'بدون عنوان'}</h3>
+                            <div class="meta">
+                                <span class="badge badge-cat">${p.category || 'غير مصنف'}</span>
+                                ${p.status === 'draft' ? '<span class="badge badge-draft">مسودة</span>' : '<span class="badge badge-published">منشور</span>'}
+                                <span class="badge-date"><i class='bx bx-calendar'></i> ${date}</span>
+                            </div>
+                        </div>
+                        <div class="project-actions">${actions}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Actions
+        async function archiveProject(id) {
+            await db.collection('projects').doc(id).update({ state: 'archived', updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+            const p = allProjects.find(x => x.id === id);
+            if (p) p.state = 'archived';
+            updateCounts(); renderProjects();
+        }
+
+        async function trashProject(id) {
+            await db.collection('projects').doc(id).update({ state: 'trashed', trashedAt: firebase.firestore.FieldValue.serverTimestamp(), updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+            const p = allProjects.find(x => x.id === id);
+            if (p) p.state = 'trashed';
+            updateCounts(); renderProjects();
+        }
+
+        async function restoreProject(id) {
+            await db.collection('projects').doc(id).update({ state: 'active', updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+            const p = allProjects.find(x => x.id === id);
+            if (p) p.state = 'active';
+            updateCounts(); renderProjects();
+        }
+
+        function deleteForever(id, title) {
+            pendingAction = id;
+            document.getElementById('modalTitle').textContent = 'حذف نهائي';
+            document.getElementById('modalMsg').textContent = `هل أنت متأكد من حذف "${title}" نهائياً؟ لا يمكن التراجع عن هذا الإجراء.`;
+            document.getElementById('deleteModal').classList.add('show');
+            document.getElementById('modalConfirmBtn').onclick = confirmDelete;
+        }
+
+        async function confirmDelete() {
+            if (!pendingAction) return;
+            try {
+                await db.collection('projects').doc(pendingAction).delete();
+                allProjects = allProjects.filter(p => p.id !== pendingAction);
+                updateCounts(); renderProjects();
+                closeModal();
+            } catch(e) {
+                alert('خطأ في الحذف: ' + e.message);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('deleteModal').classList.remove('show');
+            pendingAction = null;
+        }
+    </script>
+</body>
+</html>

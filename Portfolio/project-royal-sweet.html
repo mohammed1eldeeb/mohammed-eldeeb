@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Sweet Case Study | Mohammed El-Deeb</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .strategy-card {
+            background: var(--color-bg-light);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .strategy-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .strategy-content {
+            padding: 1.5rem;
+        }
+
+        .strategy-title {
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-box {
+            background: rgba(141, 110, 99, 0.1);
+            border-left: 4px solid var(--color-primary);
+            padding: 1rem;
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--color-text-muted);
+        }
+
+        [dir="rtl"] .quote-box {
+            border-left: none;
+            border-right: 4px solid var(--color-primary);
+        }
+
+        /* Enforce Language Visibility - Internal Style to Bypass Cache */
+        html[lang="en"] .content-ar {
+            display: none !important;
+        }
+
+        html[lang="ar"] .content-en {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="M. El-Deeb Logo">
+                M. El-Deeb
+            </a>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link" data-i18n="home">Home</a>
+                    <a href="portfolio.html" class="nav-link active" data-i18n="portfolio">Portfolio</a>
+                    <a href="resume.html" class="nav-link" data-i18n="resume">Resume</a>
+                    <a href="contact.html" class="nav-link" data-i18n="contact">Contact</a>
+                </div>
+
+                <div class="controls">
+                    <button id="theme-toggle" class="control-btn" title="Toggle Theme"><i
+                            class='bx bx-sun'></i></button>
+                    <button id="lang-toggle" class="control-btn" title="Toggle Language">عربي</button>
+                </div>
+
+                <div class="social-icons-header">
+                    <a href="https://www.linkedin.com/in/mohammed-eldeeb-8d9" target="_blank" class="icon-btn"><i
+                            class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.tiktok.com/@mohammed.eldeeb148" target="_blank" class="icon-btn"><i
+                            class='bx bxl-tiktok'></i></a>
+                    <a href="https://wa.me/+201000187366" target="_blank" class="icon-btn"><i
+                            class='bx bxl-whatsapp'></i></a>
+                </div>
+                <a href="Mohammed_ElDeeb_CV.pdf" download class="btn nav-cta" data-i18n="downloadCV">Download CV</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Details Section -->
+    <section class="project-details" style="padding-top: 120px;">
+        <div class="container">
+            <div style="margin-bottom: 2rem;">
+                <a href="portfolio.html" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.9rem;">
+                    <i class='bx bx-arrow-back'></i> <span data-i18n="portfolio">Back to Portfolio</span>
+                </a>
+            </div>
+
+            <!-- Content EN -->
+            <div class="content-en">
+                <h1 style="margin-bottom: 0.5rem;">Digital Recovery & Restructuring: Royal Sweet</h1>
+                <p style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: 2rem;">Industry: Premium Desserts - KSA Market</p>
+
+                <img src="images/royal-sweet/logo.jpg" alt="Royal Sweet Case Study"
+                    style="width: 100%; border-radius: 12px; margin-bottom: 3rem; object-fit: contain; max-height: 350px;">
+
+                <h2 style="margin-bottom: 1rem;">1. Executive Summary</h2>
+                <p style="margin-bottom: 3rem; max-width: 800px; color: var(--color-text-muted); line-height: 1.8;">
+                    A strategic 90-day contract to rescue and restructure the digital account of a prominent premium dessert brand in the Saudi market. The account was suffering from a severe "Shadowban" resulting from past practices relying on fake engagement.
+                </p>
+
+                <h2 style="margin-bottom: 1rem;">2. Month 1: Audit & Discovery</h2>
+                <p style="color: var(--color-text-muted);">During the first 30 days of management, the focus was on data analysis and tracking content behavior. I observed an abnormal pattern threatening the brand's commercial value:</p>
+                
+                <div class="quote-box" style="margin-bottom: 2rem;">
+                    <strong>The Alarming Indicator:</strong> Posts remained completely stagnant with zero engagement for 48 hours, then suddenly received hundreds of likes and comments within a single hour in an intense and suspicious manner.
+                </div>
+
+                <p style="color: var(--color-text-muted); margin-bottom: 2rem;">
+                    <strong>Confronting the Facts:</strong> After analyzing the data and confronting the client, it was revealed that they previously relied on European "Engagement Pods" to generate fake engagement.<br><br>
+                    <strong>The Brave Decision:</strong> As a marketing consultant, I completely refused to continue on this path that gives deceptive numbers and kills actual sales opportunities. I developed a strict rescue plan to clean the account and regain algorithmic trust, which was immediately approved for execution.
+                </p>
+
+                <h2 style="margin-bottom: 1rem;">3. The 45-Day Recovery</h2>
+                <p style="color: var(--color-text-muted);">Once leading the transitional phase, we began implementing a digital treatment plan focused on three main pillars:</p>
+
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <img src="images/royal-sweet/Artboard 2.png" class="strategy-img" alt="Digital Detox">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Digital Detox</h3>
+                            <p>Immediate and complete halt of all artificial engagement sources. We accepted the expected initial "shock" phase (engagement dropping to absolute zero) to clean the data history and retrain the algorithm to recognize the account based on genuine human behavior.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/royal-sweet/Artboard 3.png" class="strategy-img" alt="Content Engineering">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Content Engineering</h3>
+                            <p>A radical shift towards "Sensory Content" by focusing on high-quality Reels that highlight intricate product details, creating an immediate purchase desire for the Saudi consumer.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/royal-sweet/Artboard 4.png" class="strategy-img" alt="Behavioral Targeting">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Behavioral Targeting</h3>
+                            <p>Precise analysis of the target audience's behavior to identify "peak coffee and dessert craving times". Posts were accurately scheduled (9 AM and 12 PM) to ensure the highest conversion and engagement rates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-bg-light); padding: 2rem; border-radius: 12px; margin: 3rem 0;">
+                    <h2 style="margin-bottom: 1rem;">4. Results & Handover</h2>
+                    <p style="margin-bottom: 1.5rem;">During the final 15 days of the contract (after the 45-day recovery period), the platforms' algorithms began rewarding the account for content quality and data purity. The results were documented in numbers:</p>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px;">🚀 <strong>Organic Reach:</strong> Successfully reached 241,276 genuine users, with an exceptional growth rate exceeding 900%.</li>
+                        <li style="margin-bottom: 15px;">🎯 <strong>New Audience Penetration:</strong> 62.5% of total engagement came from non-followers, breaking the digital isolation and attracting new potential customers.</li>
+                        <li style="margin-bottom: 15px;">💬 <strong>True Engagement:</strong> Recorded over 51,000 real interactions (likes, comments, saves) stemming from genuine product interest.</li>
+                        <li>🛒 <strong>Purchase Intent:</strong> Profile visits jumped to 946 as users searched for ordering details.</li>
+                    </ul>
+                </div>
+
+                <!-- Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-icon">👁️</span>
+                        <span class="metric-number">241K+</span>
+                        <span class="metric-label">Organic Reach</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">📈</span>
+                        <span class="metric-number">+900%</span>
+                        <span class="metric-label">Engagement Growth</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">🎯</span>
+                        <span class="metric-number">62.5%</span>
+                        <span class="metric-label">Non-followers Reach</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">💬</span>
+                        <span class="metric-number">51K+</span>
+                        <span class="metric-label">True Interactions</span>
+                    </div>
+                </div>
+
+                <p style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">
+                    * <strong>Strategic Takeaway:</strong> This project represents a practical model in digital crisis management and brand rebuilding. Fake engagement is merely a temporary painkiller that commercially kills the account, whereas sustainable success requires strategic courage in decision-making, patience during the digital recovery phase, and total reliance on smart content tailored specifically for actual consumer behavior. By the end of the 90 days, the account transformed from complete stagnation into a vibrant digital asset and a sales channel ready to achieve sustainable returns.
+                </p>
+
+<h2 style="margin-top: 4rem; text-align: center; color: var(--color-primary);">Content & Visual Strategy (Content & Visual Strategy)</h2>
+                <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 3rem;">
+                    استعراض لتناغم الـ Copywriting مع التوجيه البصري (Visual Direction) لإنشاء محتوى حسي يخلق رغبة شرائية فورية.
+                </p>
+
+                <div style="text-align: center; margin: 2rem 0;">
+                    <a href="images/royal-sweet/content-plan.pdf" target="_blank" class="btn btn-secondary" style="padding: 12px 30px; font-size: 1.1rem;">
+                        <i class='bx bx-download'></i> تحميل خطة المحتوى التفصيلية (PDF)
+                    </a>
+                </div>
+
+                <div class="content-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 2rem;">
+                    
+                    <!-- Post 1 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 2.png" style="width: 100%; display: block;" alt="Post 1">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">حكاية حب بطلتها صنية سولتد كراميل</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">بين هدوء المطبخ وشغف الإتقان ولدت صينية كرستال سولتد كراميل. مو مجرد حلى بل هي رسالة حب بكل قطعة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 3.png" style="width: 100%; display: block;" alt="Post 2">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">طعم كلاسيكى ما يختلف عليه احد</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">حلى الثمانيات وجد لكل شخص يحب الطعم الغنى البسيط جربيه بجانب كوب قهوة وما راح تندمى</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 3 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 4.png" style="width: 100%; display: block;" alt="Post 3">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">حولي مجلسك لضيافة ملكية</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">رويال سويت قريبة منك فى كل لحظة بضغطة زر يوصلك اللي يسرك</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 4 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 5.png" style="width: 100%; display: block;" alt="Post 4">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">حكاية دافئة بطلها البيكان</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تخيلي تناغم قاعدة التارت الهشة مع حبات البيكان الذهبية توازن مذهل بين حلاوة الكراميل الدافئة وقوام المكسرات الغني يصنع لكِ لحظة استثنائية في كل قطعة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 5 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 6.png" style="width: 100%; display: block;" alt="Post 5">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">نعومة الشوكولاتة وقوام يذوب في القلب</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تخيلي مكعبات غنية من الشوكولاتة الفاخرة تتداخل معها قطع المارشميلو الهشة والمكسرات المختارة لتمنحك تباينا مذهلاً بين الطراوة والقرمشة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 6 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 7.png" style="width: 100%; display: block;" alt="Post 6">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">بين الحلاوة والذوبان</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تخيلي حبة تمر طرية تستقر في قلبها حشوة غنية من الجبن الكريمي لتصنع توازناً مذهلاً بين الحلاوة الشرقية واللمسة العصرية.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 7 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 8.png" style="width: 100%; display: block;" alt="Post 7">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">رويال سويت نعرف ذوقك!</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">الهدية هي بصمتك في التعبير عن الحب.. رويال سويت يعرف ذوقك ويختاره لك!</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 10 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 10.png" style="width: 100%; display: block;" alt="Post 10">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">انتعاش الصيف بدأ في رويال سويت</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تخيلي قاعدة تارت هشة ومقرمشة تحتضن طبقة غنية من التوت الطبيعي.. جربي انتعاش الصيف في كل قطعة وتمتعي بمزيج النكهات.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 12 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 12.png" style="width: 100%; display: block;" alt="Post 12">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">اختاريها تزين طاولتك!</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تباين ساحر بين قرمشة الكرانشي في أقراص الكراميل المملح وبين الانتعاش المفاجئ في أقراص المانجو. نكهات متناقضة تمنحك الاستثناء.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>M. El-Deeb</h4>
+                    <p data-i18n="heroDesc">Digital Marketing Specialist focused on ROI and data-driven growth.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="quickLinks">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="home">Home</a></li>
+                        <li><a href="portfolio.html" data-i18n="portfolio">Portfolio</a></li>
+                        <li><a href="resume.html" data-i18n="resume">Resume</a></li>
+                        <li><a href="contact.html" data-i18n="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="connect">Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/mohammed-eldeeb-8d9" target="_blank" class="icon-btn"><i
+                                class='bx bxl-linkedin'></i></a>
+                        <a href="https://www.tiktok.com/@mohammed.eldeeb148" target="_blank" class="icon-btn"><i
+                                class='bx bxl-tiktok'></i></a>
+                        <a href="https://wa.me/+201000187366" target="_blank" class="icon-btn"><i
+                                class='bx bxl-whatsapp'></i></a>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">mohammed22eldeeb@gmail.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script> <span data-i18n="copyright">Mohammed El-Deeb.
+                    All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
+
+            </div>
+
+            <!-- Content AR -->
+            <div class="content-ar">
+                <h1 style="margin-bottom: 0.5rem;">دراسة حالة: إعادة الهيكلة والتعافي الرقمي لحساب "Royal Sweet"</h1>
+                <p style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: 2rem;">القطاع: الحلويات الفاخرة (Premium Desserts) – السوق السعودي</p>
+
+                <img src="images/royal-sweet/logo.jpg" alt="Royal Sweet Case Study"
+                    style="width: 100%; border-radius: 12px; margin-bottom: 3rem; object-fit: contain; max-height: 350px;">
+
+                <h2 style="margin-bottom: 1rem;">1. الملخص التنفيذي (Executive Summary)</h2>
+                <p style="margin-bottom: 3rem; max-width: 800px; color: var(--color-text-muted); line-height: 1.8;">
+                    إدارة تعاقد استراتيجي مدته 3 أشهر لإنقاذ وإعادة هيكلة الحساب الرقمي لبراند بارز في قطاع الحلويات الفاخرة بالسوق السعودي. كان الحساب يعاني من "Shadowban" حاد نتيجة ممارسات سابقة اعتمدت على الـ Fake Engagement.
+                </p>
+
+                <h2 style="margin-bottom: 1rem;">2. الشهر الأول: الفحص الاستراتيجي واكتشاف المشكلة</h2>
+                <p style="color: var(--color-text-muted);">خلال أول 30 يوماً من استلام الإدارة، كان التركيز على تحليل البيانات وتتبع الـ Behavior الخاص بالمحتوى، ورصدت نمطاً غير طبيعي يهدد القيمة التجارية للبراند:</p>
+                
+                <div class="quote-box" style="margin-bottom: 2rem;">
+                    <strong>المؤشر المقلق:</strong> البوستات تظل راكدة تماماً بلا أي تفاعل لمدة 48 ساعة، ثم تتلقى فجأة مئات الإعجابات والتعليقات خلال ساعة واحدة بشكل مكثف ومريب.
+                </div>
+
+                <p style="color: var(--color-text-muted); margin-bottom: 2rem;">
+                    <strong>المواجهة بالحقائق:</strong> بعد تحليل البيانات ومواجهة العميل، تبين الاعتماد السابق على "Engagement Pods" من أوروبا لتوليد تفاعل وهمي.<br><br>
+                    <strong>القرار الحاسم (The Brave Decision):</strong> كاستشاري تسويق، رفضت تماماً الاستمرار في هذا المسار اللي بيعطي أرقام وهمية ويقتل فرص المبيعات الفعلية. حطيت خطة إنقاذ صارمة لتنظيف الحساب واستعادة ثقة الـ Algorithm، وتم اعتمادها فوراً للبدء.
+                </p>
+
+                <h2 style="margin-bottom: 1rem;">3. مرحلة التعافي (45 يوماً): خطة التنفيذ الرقمي</h2>
+                <p style="color: var(--color-text-muted);">بمجرد استلام القيادة للمرحلة الانتقالية، بدأنا تنفيذ خطة الـ Recovery اللي استمرت 45 يوماً، وتركزت على 3 محاور أساسية:</p>
+
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <img src="images/royal-sweet/Artboard 2.png" class="strategy-img" alt="Digital Detox">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">الـ Digital Detox</h3>
+                            <p>الإيقاف الفوري والكامل لكل مصادر الـ Fake Engagement. تقبلنا في البداية مرحلة "الصدمة" المتوقعة (نزول الـ Engagement للصفر الفعلي) عشان ننظف سجل البيانات وندرب الـ Algorithm يتعرف على الحساب من جديد بناءً على Real User Behavior.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/royal-sweet/Artboard 3.png" class="strategy-img" alt="Content Engineering">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">الـ Content Engineering</h3>
+                            <p>التحول الجذري نحو "Sensory Content" بالتركيز على الـ Reels عالية الجودة اللي تبرز تفاصيل المنتج وتخلق رغبة شرائية فورية (Purchase Intent) عند المستهلك في السعودية.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/royal-sweet/Artboard 4.png" class="strategy-img" alt="Behavioral Targeting">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">الـ Behavioral Targeting</h3>
+                            <p>تحليل دقيق لـ سلوك الجمهور المستهدف وتحديد "أوقات ذروة الرغبة في القهوة والحلى"، وبناءً عليه جدولنا النشر بدقة (9 صباحاً و 12 ظهراً) عشان نضمن أعلى معدلات الـ Conversion والـ Engagement.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-bg-light); padding: 2rem; border-radius: 12px; margin: 3rem 0;">
+                    <h2 style="margin-bottom: 1rem;">4. النتائج: حصد الثمار وتسليم الحساب</h2>
+                    <p style="margin-bottom: 1.5rem;">خلال الـ 15 يوماً الأخيرة من التعاقد (بعد فترة الـ 45 يوماً العلاجية)، بدأت الـ Algorithms تكافئ الحساب على جودة المحتوى ونقاء البيانات، وجاءت النتائج موثقة بالأرقام:</p>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px;">
+                            🚀 <strong>الـ Organic Reach:</strong> نجحنا نوصل لـ 241,276 مستخدم حقيقي بالكامل، بنسبة نمو تخطت 900%.
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            🎯 <strong>الوصول لـ Non-followers:</strong> 62.5% من الـ Engagement الإجمالي جاء من حسابات غير متابعة، مما يعني كسر العزلة الرقمية وجذب عملاء محتملين جدد.
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            💬 <strong>الـ True Engagement:</strong> تسجيل أكثر من 51,000 تفاعل حقيقي (Likes, Comments, Saves) نابع من اهتمام حقيقي بالمنتج.
+                        </li>
+                        <li>
+                            🛒 <strong>الـ Purchase Intent:</strong> قفزت الـ Profile Visits لـ 946 زيارة بحثاً عن تفاصيل الطلب.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-icon">👁️</span>
+                        <span class="metric-number">241K+</span>
+                        <span class="metric-label">الـ Organic Reach</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">📈</span>
+                        <span class="metric-number">+900%</span>
+                        <span class="metric-label">نمو الـ Engagement</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">🎯</span>
+                        <span class="metric-number">62.5%</span>
+                        <span class="metric-label">الـ Non-followers</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">💬</span>
+                        <span class="metric-number">51K+</span>
+                        <span class="metric-label">الـ True Engagement</span>
+                    </div>
+                </div>
+
+                <p style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">
+                    * <strong>الخلاصة الاستراتيجية:</strong> هذا المشروع يمثل نموذجاً عملياً لإدارة الأزمات الرقمية وإعادة بناء البراندات. الـ Fake Engagement هو مجرد مسكن مؤقت ينهي حياة الحساب تجارياً، بينما النجاح المستدام يطلب شجاعة استراتيجية في اتخاذ القرارات، وصبراً على مرحلة الـ Recovery الرقمي، واعتماد كلي على محتوى ذكي مصمم خصيصاً لـ سلوك المستهلك (Consumer Behavior). بنهاية الـ 90 يوماً، تحول الحساب من حالة الركود التام لأصل رقمي وقناة مبيعات جاهزة تحقق عوائد.
+                </p>
+                
+                <h2 style="margin-top: 4rem; text-align: center; color: var(--color-primary);">معرض المحتوى والتصميم (Content & Visual Strategy)</h2>
+                <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 3rem;">
+                    استعراض لتناغم الـ Copywriting مع التوجيه البصري (Visual Direction) لإنشاء محتوى حسي يخلق رغبة شرائية فورية.
+                </p>
+
+                <div style="text-align: center; margin: 2rem 0;">
+                    <a href="images/royal-sweet/content-plan.pdf" target="_blank" class="btn btn-secondary" style="padding: 12px 30px; font-size: 1.1rem;">
+                        <i class='bx bx-download'></i> تحميل خطة المحتوى التفصيلية (PDF)
+                    </a>
+                </div>
+
+                <div class="content-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 2rem;">
+                    
+                    <!-- Post 1 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 2.png" style="width: 100%; display: block;" alt="Post 1">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">حكاية حب بطلتها صنية سولتد كراميل</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">بين هدوء المطبخ وشغف الإتقان ولدت صينية كرستال سولتد كراميل. مو مجرد حلى بل هي رسالة حب بكل قطعة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 3.png" style="width: 100%; display: block;" alt="Post 2">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">طعم كلاسيكى ما يختلف عليه احد</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">حلى الثمانيات وجد لكل شخص يحب الطعم الغنى البسيط جربيه بجانب كوب قهوة وما راح تندمى</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 3 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 4.png" style="width: 100%; display: block;" alt="Post 3">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">حولي مجلسك لضيافة ملكية</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">رويال سويت قريبة منك فى كل لحظة بضغطة زر يوصلك اللي يسرك</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 4 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 5.png" style="width: 100%; display: block;" alt="Post 4">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">حكاية دافئة بطلها البيكان</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تخيلي تناغم قاعدة التارت الهشة مع حبات البيكان الذهبية توازن مذهل بين حلاوة الكراميل الدافئة وقوام المكسرات الغني يصنع لكِ لحظة استثنائية في كل قطعة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 5 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 6.png" style="width: 100%; display: block;" alt="Post 5">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">نعومة الشوكولاتة وقوام يذوب في القلب</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تخيلي مكعبات غنية من الشوكولاتة الفاخرة تتداخل معها قطع المارشميلو الهشة والمكسرات المختارة لتمنحك تباينا مذهلاً بين الطراوة والقرمشة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 6 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 7.png" style="width: 100%; display: block;" alt="Post 6">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">بين الحلاوة والذوبان</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تخيلي حبة تمر طرية تستقر في قلبها حشوة غنية من الجبن الكريمي لتصنع توازناً مذهلاً بين الحلاوة الشرقية واللمسة العصرية.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 7 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 8.png" style="width: 100%; display: block;" alt="Post 7">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">رويال سويت نعرف ذوقك!</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">الهدية هي بصمتك في التعبير عن الحب.. رويال سويت يعرف ذوقك ويختاره لك!</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 10 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 10.png" style="width: 100%; display: block;" alt="Post 10">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">انتعاش الصيف بدأ في رويال سويت</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تخيلي قاعدة تارت هشة ومقرمشة تحتضن طبقة غنية من التوت الطبيعي.. جربي انتعاش الصيف في كل قطعة وتمتعي بمزيج النكهات.</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 12 -->
+                    <div class="post-card" style="background: var(--color-bg-light); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                        <img src="images/royal-sweet/Artboard 12.png" style="width: 100%; display: block;" alt="Post 12">
+                        <div style="padding: 1.5rem;">
+                            <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 10px;">اختاريها تزين طاولتك!</h3>
+                            <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.6;">تباين ساحر بين قرمشة الكرانشي في أقراص الكراميل المملح وبين الانتعاش المفاجئ في أقراص المانجو. نكهات متناقضة تمنحك الاستثناء.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>M. El-Deeb</h4>
+                    <p data-i18n="heroDesc">Digital Marketing Specialist focused on ROI and data-driven growth.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="quickLinks">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="home">Home</a></li>
+                        <li><a href="portfolio.html" data-i18n="portfolio">Portfolio</a></li>
+                        <li><a href="resume.html" data-i18n="resume">Resume</a></li>
+                        <li><a href="contact.html" data-i18n="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="connect">Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/mohammed-eldeeb-8d9" target="_blank" class="icon-btn"><i
+                                class='bx bxl-linkedin'></i></a>
+                        <a href="https://www.tiktok.com/@mohammed.eldeeb148" target="_blank" class="icon-btn"><i
+                                class='bx bxl-tiktok'></i></a>
+                        <a href="https://wa.me/+201000187366" target="_blank" class="icon-btn"><i
+                                class='bx bxl-whatsapp'></i></a>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">mohammed22eldeeb@gmail.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script> <span data-i18n="copyright">Mohammed El-Deeb.
+                    All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

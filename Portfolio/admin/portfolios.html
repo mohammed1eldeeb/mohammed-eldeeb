@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملفات العرض - لوحة التحكم</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; }
+        .admin-wrapper { display: flex; min-height: 100vh; }
+        .sidebar { width: 260px; background: linear-gradient(180deg, #667eea 0%, #764ba2 100%); color: white; padding: 24px 16px; position: fixed; top: 0; right: 0; bottom: 0; overflow-y: auto; }
+        .sidebar-logo { text-align: center; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 24px; }
+        .sidebar-logo h2 { font-size: 22px; } .sidebar-logo small { opacity: 0.7; font-size: 12px; }
+        .nav-list { list-style: none; } .nav-list li { margin-bottom: 4px; }
+        .nav-list a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: rgba(255,255,255,0.8); text-decoration: none; border-radius: 10px; transition: all 0.3s; }
+        .nav-list a:hover, .nav-list a.active { background: rgba(255,255,255,0.2); color: white; }
+        .nav-list i { font-size: 20px; }
+        .main-content { flex: 1; margin-right: 260px; padding: 30px; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+        .page-header h1 { font-size: 28px; color: #333; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: #f0f0f0; color: #666; padding: 10px 20px; border-radius: 10px; text-decoration: none; }
+
+        .info-box { background: #eef2ff; border: 1px solid #c7d2fe; padding: 16px 20px; border-radius: 12px; margin-bottom: 24px; color: #4338ca; line-height: 1.7; }
+        .info-box i { margin-left: 4px; }
+
+        /* Profile Cards */
+        .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .profile-card { background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; }
+        .profile-card-header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; color: white; }
+        .profile-card-header h3 { margin-bottom: 4px; }
+        .profile-card-header small { opacity: 0.8; }
+        .profile-card-body { padding: 20px; }
+        .profile-link { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; font-size: 13px; word-break: break-all; color: #555; }
+        .profile-link i { color: #667eea; flex-shrink: 0; }
+        .profile-link .copy-btn { margin-right: auto; background: #667eea; color: white; border: none; padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; flex-shrink: 0; }
+        .profile-projects { color: #888; font-size: 14px; margin-bottom: 12px; }
+        .profile-actions { display: flex; gap: 8px; }
+        .profile-actions button { flex: 1; padding: 10px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; }
+        .btn-edit-profile { background: #e3f2fd; color: #1976d2; }
+        .btn-edit-profile:hover { background: #1976d2; color: white; }
+        .btn-delete-profile { background: #fee; color: #c33; }
+        .btn-delete-profile:hover { background: #c33; color: white; }
+
+        /* Add/Edit Modal */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-overlay.show { display: flex; }
+        .modal { background: white; padding: 30px; border-radius: 16px; max-width: 520px; width: 95%; max-height: 85vh; overflow-y: auto; }
+        .modal h2 { margin-bottom: 20px; color: #333; }
+        .modal .form-group { margin-bottom: 16px; }
+        .modal .form-group label { display: block; margin-bottom: 6px; color: #555; font-weight: 600; }
+        .modal .form-group input { width: 100%; padding: 10px 14px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 15px; }
+        .modal .form-group input:focus { outline: none; border-color: #667eea; }
+        .project-checklist { max-height: 250px; overflow-y: auto; border: 1px solid #eee; border-radius: 10px; padding: 12px; }
+        .project-check { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 8px; cursor: pointer; }
+        .project-check:hover { background: #f8f9fa; }
+        .project-check input[type="checkbox"] { width: 18px; height: 18px; accent-color: #667eea; }
+        .project-check label { cursor: pointer; color: #333; flex: 1; }
+        .project-check .cat-badge { font-size: 11px; padding: 2px 8px; background: #eef; color: #667eea; border-radius: 10px; }
+        .modal-btns { display: flex; gap: 12px; margin-top: 20px; }
+        .modal-btn { flex: 1; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 15px; }
+        .modal-btn.cancel { background: #f0f0f0; color: #666; }
+        .modal-btn.save { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+
+        .add-profile-btn { display: flex; align-items: center; gap: 8px; padding: 16px; background: white; border: 2px dashed #d0d5dd; border-radius: 16px; cursor: pointer; color: #667eea; font-size: 16px; font-weight: 600; justify-content: center; width: 100%; }
+        .add-profile-btn:hover { border-color: #667eea; background: #f8f9ff; }
+
+        .status-msg { padding: 14px; border-radius: 10px; margin-bottom: 20px; display: none; font-weight: 500; }
+        .status-msg.success { display: block; background: #efe; color: #2a7; }
+        .status-msg.error { display: block; background: #fee; color: #c33; }
+        .auth-gate { text-align: center; padding: 100px 20px; color: #666; }
+        .auth-gate i { font-size: 60px; color: #ccc; margin-bottom: 16px; display: block; }
+        @media (max-width: 768px) { .sidebar { position: static; width: 100%; } .main-content { margin-right: 0; } }
+    </style>
+</head>
+<body>
+    <div id="authGate" class="auth-gate"><i class='bx bx-loader-alt bx-spin'></i><h2>جاري التحقق...</h2></div>
+
+    <!-- Add/Edit Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <h2 id="modalTitle">ملف عرض جديد</h2>
+            <input type="hidden" id="editingId">
+            <div class="form-group">
+                <label>اسم ملف العرض</label>
+                <input type="text" id="profileName" placeholder="مثال: Media Buyer Portfolio">
+            </div>
+            <div class="form-group">
+                <label>الرابط المختصر (slug)</label>
+                <input type="text" id="profileSlug" placeholder="مثال: media-buyer" style="direction:ltr">
+            </div>
+            <div class="form-group">
+                <label>اختر المشاريع لهذا الملف</label>
+                <div class="project-checklist" id="projectChecklist">
+                    <p style="color:#aaa;text-align:center">جاري التحميل...</p>
+                </div>
+            </div>
+            <div class="modal-btns">
+                <button class="modal-btn cancel" onclick="closeModal()">إلغاء</button>
+                <button class="modal-btn save" onclick="saveProfile()">حفظ</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageContent" class="admin-wrapper" style="display:none">
+        <aside class="sidebar">
+            <div class="sidebar-logo"><h2>🎛️ لوحة التحكم</h2><small>M. El-Deeb Portfolio</small></div>
+            <nav><ul class="nav-list">
+                <li><a href="dashboard.html"><i class='bx bxs-dashboard'></i> الرئيسية</a></li>
+                <li><a href="projects.html"><i class='bx bxs-briefcase'></i> المشاريع</a></li>
+                <li><a href="hero.html"><i class='bx bx-home'></i> القسم الرئيسي</a></li>
+                <li><a href="services.html"><i class='bx bx-star'></i> الخدمات</a></li>
+                <li><a href="contact-settings.html"><i class='bx bx-envelope'></i> التواصل</a></li>
+                <li><a href="cv.html"><i class='bx bx-file'></i> السيرة الذاتية</a></li>
+                <li><a href="portfolios.html" class="active"><i class='bx bx-collection'></i> ملفات العرض</a></li>
+                <li><a href="settings.html"><i class='bx bx-cog'></i> الإعدادات</a></li>
+                <li><a href="../index.html" target="_blank"><i class='bx bx-external-link'></i> عرض الموقع</a></li>
+            </ul></nav>
+        </aside>
+        <main class="main-content">
+            <div class="page-header">
+                <h1>📂 ملفات العرض (Multi-Portfolio)</h1>
+                <a href="dashboard.html" class="back-btn"><i class='bx bx-arrow-back'></i> العودة</a>
+            </div>
+            <div class="info-box">
+                <i class='bx bx-info-circle'></i>
+                <strong>إزاي تشتغل؟</strong><br>
+                اعمل ملف عرض لكل تخصص (مثلاً: Media Buyer, Social Media). اختار المشاريع المناسبة لكل ملف. لما تقدم على وظيفة، ابعت الرابط المخصص وهيظهر المشاريع المناسبة بس!
+            </div>
+            <div id="statusMsg" class="status-msg"></div>
+            <div class="profile-grid" id="profileGrid"></div>
+            <button class="add-profile-btn" onclick="openModal()"><i class='bx bx-plus-circle'></i> إنشاء ملف عرض جديد</button>
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script>
+        firebase.initializeApp({ apiKey:"AIzaSyDLCKGAbYvH0Ifgp3Vp5M4LQm7Q406uiPw", authDomain:"portfolio-6ed42.firebaseapp.com", projectId:"portfolio-6ed42", storageBucket:"portfolio-6ed42.firebasestorage.app", messagingSenderId:"140699165995", appId:"1:140699165995:web:c6e78e258fe041c554916e" });
+        const auth = firebase.auth(), db = firebase.firestore();
+        let allProjects = [], allProfiles = [];
+
+        auth.onAuthStateChanged(u => { if (!u) { window.location.href='index.html'; return; } document.getElementById('authGate').style.display='none'; document.getElementById('pageContent').style.display='flex'; loadData(); });
+
+        async function loadData() {
+            // Load projects
+            const projSnap = await db.collection('projects').orderBy('order','desc').get();
+            allProjects = []; projSnap.forEach(d => { const data = d.data(); if ((data.state||'active')==='active') allProjects.push({id:d.id,...data}); });
+            // Load profiles
+            const profSnap = await db.collection('portfolioProfiles').get();
+            allProfiles = []; profSnap.forEach(d => allProfiles.push({id:d.id,...d.data()}));
+            renderProfiles();
+        }
+
+        function renderProfiles() {
+            const grid = document.getElementById('profileGrid');
+            if (allProfiles.length === 0) { grid.innerHTML = '<p style="color:#aaa;text-align:center;padding:40px">لا توجد ملفات عرض بعد. اعمل أول واحد!</p>'; return; }
+            grid.innerHTML = allProfiles.map(p => {
+                const projCount = (p.projectIds || []).length;
+                const baseUrl = window.location.origin;
+                const link = `${baseUrl}/portfolio.html?profile=${p.slug}`;
+                return `
+                    <div class="profile-card">
+                        <div class="profile-card-header">
+                            <h3>${p.name}</h3>
+                            <small>${projCount} مشروع</small>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="profile-link">
+                                <i class='bx bx-link'></i>
+                                <span>${link}</span>
+                                <button class="copy-btn" onclick="copyLink('${link}')">نسخ</button>
+                            </div>
+                            <div class="profile-actions">
+                                <button class="btn-edit-profile" onclick="editProfile('${p.id}')"><i class='bx bx-edit'></i> تعديل</button>
+                                <button class="btn-delete-profile" onclick="deleteProfile('${p.id}')"><i class='bx bx-trash'></i> حذف</button>
+                            </div>
+                        </div>
+                    </div>`;
+            }).join('');
+        }
+
+        function openModal(profile = null) {
+            document.getElementById('editingId').value = profile ? profile.id : '';
+            document.getElementById('modalTitle').textContent = profile ? 'تعديل ملف العرض' : 'ملف عرض جديد';
+            document.getElementById('profileName').value = profile ? profile.name : '';
+            document.getElementById('profileSlug').value = profile ? profile.slug : '';
+            const checklist = document.getElementById('projectChecklist');
+            const selectedIds = profile ? (profile.projectIds || []) : [];
+            checklist.innerHTML = allProjects.map(p => `
+                <div class="project-check">
+                    <input type="checkbox" id="chk_${p.id}" value="${p.id}" ${selectedIds.includes(p.id)?'checked':''}>
+                    <label for="chk_${p.id}">${p.title || p.titleEn || 'بدون عنوان'}</label>
+                    <span class="cat-badge">${p.category || ''}</span>
+                </div>
+            `).join('') || '<p style="color:#aaa">لا توجد مشاريع</p>';
+            document.getElementById('modal').classList.add('show');
+        }
+
+        function closeModal() { document.getElementById('modal').classList.remove('show'); }
+
+        function editProfile(id) {
+            const p = allProfiles.find(x => x.id === id);
+            if (p) openModal(p);
+        }
+
+        async function saveProfile() {
+            const name = document.getElementById('profileName').value.trim();
+            const slug = document.getElementById('profileSlug').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '-');
+            if (!name || !slug) { alert('يرجى ملء الاسم والرابط'); return; }
+            const checked = document.querySelectorAll('#projectChecklist input:checked');
+            const projectIds = Array.from(checked).map(c => c.value);
+            const editId = document.getElementById('editingId').value;
+            try {
+                const data = { name, slug, projectIds, updatedAt: firebase.firestore.FieldValue.serverTimestamp() };
+                if (editId) { await db.collection('portfolioProfiles').doc(editId).update(data); }
+                else { await db.collection('portfolioProfiles').add(data); }
+                closeModal(); showMsg('✅ تم الحفظ!', 'success'); loadData();
+            } catch(e) { showMsg('❌ خطأ: '+e.message, 'error'); }
+        }
+
+        async function deleteProfile(id) {
+            if (!confirm('هل أنت متأكد من حذف ملف العرض ده؟')) return;
+            await db.collection('portfolioProfiles').doc(id).delete();
+            showMsg('✅ تم الحذف', 'success'); loadData();
+        }
+
+        function copyLink(link) {
+            navigator.clipboard.writeText(link).then(() => { showMsg('✅ تم نسخ الرابط!', 'success'); });
+        }
+
+        function showMsg(m,t) { const el=document.getElementById('statusMsg'); el.textContent=m; el.className='status-msg '+t; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon F1 Launch | Mohammed El-Deeb</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .strategy-card {
+            background: var(--color-bg-light);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .strategy-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .strategy-content {
+            padding: 1.5rem;
+        }
+
+        .strategy-title {
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-box {
+            background: rgba(141, 110, 99, 0.1);
+            border-left: 4px solid var(--color-primary);
+            padding: 1rem;
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--color-text-muted);
+        }
+
+        [dir="rtl"] .quote-box {
+            border-left: none;
+            border-right: 4px solid var(--color-primary);
+        }
+
+        /* Enforce Language Visibility - Internal Style to Bypass Cache */
+        html[lang="en"] .content-ar {
+            display: none !important;
+        }
+
+        html[lang="ar"] .content-en {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="M. El-Deeb Logo">
+                M. El-Deeb
+            </a>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link" data-i18n="home">Home</a>
+                    <a href="portfolio.html" class="nav-link active" data-i18n="portfolio">Portfolio</a>
+                    <a href="resume.html" class="nav-link" data-i18n="resume">Resume</a>
+                    <a href="contact.html" class="nav-link" data-i18n="contact">Contact</a>
+                </div>
+
+                <div class="controls">
+                    <button id="theme-toggle" class="control-btn" title="Toggle Theme"><i
+                            class='bx bx-sun'></i></button>
+                    <button id="lang-toggle" class="control-btn" title="Toggle Language">عربي</button>
+                </div>
+
+                <div class="social-icons-header">
+                    <a href="https://www.linkedin.com/in/mohammed-eldeeb-8d9" target="_blank" class="icon-btn"><i
+                            class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.tiktok.com/@mohammed.eldeeb148" target="_blank" class="icon-btn"><i
+                            class='bx bxl-tiktok'></i></a>
+                    <a href="https://wa.me/+201000187366" target="_blank" class="icon-btn"><i
+                            class='bx bxl-whatsapp'></i></a>
+                </div>
+                <a href="Mohammed El-Deeb C.V.pdf" download class="btn nav-cta" data-i18n="downloadCV">Download CV</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Details Section -->
+    <section class="project-details" style="padding-top: 120px;">
+        <div class="container">
+            <div style="margin-bottom: 2rem;">
+                <a href="portfolio.html" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.9rem;">
+                    <i class='bx bx-arrow-back'></i> <span data-i18n="portfolio">Back to Portfolio</span>
+                </a>
+            </div>
+
+            <!-- Content EN -->
+            <div class="content-en">
+                <h1 style="margin-bottom: 0.5rem;">Winter Season Launch: F1 Themed Jackets Strategy</h1>
+                <p style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: 2rem;">Horizon Brand</p>
+
+                <img src="images/horizon/saudi-fashion.png" alt="Horizon F1 Collection"
+                    style="width: 100%; border-radius: 12px; margin-bottom: 3rem; object-fit: cover; max-height: 500px;">
+
+                <h2 style="margin-bottom: 1rem;">1. Project Overview</h2>
+                <p style="margin-bottom: 3rem; max-width: 800px; color: var(--color-text-muted); line-height: 1.8;">
+                    In a crowded winter fashion market, the challenge was launching an F1-inspired jacket collection for
+                    the Saudi market. As a Social Media Specialist, I crafted a content strategy focused on merging
+                    "Racing Excitement" with "Product Quality," while managing the massive influx of customers to
+                    convert views into sales.
+                </p>
+
+                <h2 style="margin-bottom: 1rem;">2. The Visual Strategy</h2>
+                <p style="color: var(--color-text-muted);">We didn't rely on randomness; instead, we segmented content
+                    based on the Customer Journey Funnel to address concerns and persuade them to buy:</p>
+
+                <div class="strategy-grid">
+                    <!-- Pair 1: Quality Assurance -->
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-hamilton.jpg" class="strategy-img" alt="Hamilton - Quality Intro">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Quality Assurance: The Hook</h3>
+                            <p>Hamilton's image establishes immediate premium status. The focus is on the "Ferrari"
+                                patch detail to prove material quality.</p>
+                            <div class="quote-box">"Quality you see from the first touch."</div>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-liam.jpg" class="strategy-img" alt="Liam - Embroidery Detail">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Addressing Pain Points</h3>
+                            <p>Directly addressing the "peeling print" fear. Close-up on embroidery to validate the
+                                claim.</p>
+                            <div class="quote-box">"Embroidery... not print."</div>
+                        </div>
+                    </div>
+
+                    <!-- Pair 2: Exclusivity -->
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-kimi.jpg" class="strategy-img" alt="Kimi - Exclusivity">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Exclusivity & Distinction</h3>
+                            <p>Kimi Antonelli representing the new generation and unique style. Targeting those who want
+                                to stand out.</p>
+                            <div class="quote-box">"A style that keeps you unique."</div>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-leclerc-2.jpg" class="strategy-img" alt="Leclerc - Limited Edition">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Limited Editions</h3>
+                            <p>Leclerc posing with the jacket to create desire. Emphasizing that stocks are limited.</p>
+                            <div class="quote-box">"Limited models with distinct taste."</div>
+                        </div>
+                    </div>
+
+                    <!-- Pair 3: Social Proof & Urgency -->
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-leclerc-1.jpg" class="strategy-img" alt="Leclerc - Reviews & Discount">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Social Proof & Incentives</h3>
+                            <p>Using a review format with a discount code (YO15) and free shipping to encourage
+                                immediate action.</p>
+                            <div class="quote-box">"Your reviews... and shipping is on us."</div>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-isack.jpg" class="strategy-img" alt="Isack - Urgency">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">Creating Urgency</h3>
+                            <p>Isack Hadjar with a winter background. Reminding them of the colder days ahead to trigger
+                                purchase.</p>
+                            <div class="quote-box">"Before the cold gets stronger."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-bg-light); padding: 2rem; border-radius: 12px; margin: 3rem 0;">
+                    <h2 style="margin-bottom: 1rem;">3. Community Management & Growth</h2>
+                    <p style="margin-bottom: 1.5rem;">The strong content created a flood of messages. My role was smart
+                        Moderation to ensure no opportunity was lost:</p>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px;">⚡ <strong>Shattering Response Records:</strong> Reduced
+                            response
+                            time by 67% (to just 3 hours instead of 10), keeping leads "Hot."</li>
+                        <li style="margin-bottom: 15px;">📥 <strong>Managing Momentum:</strong> Handled 970+
+                            conversations and inquiries about sizes and prices with precision.</li>
+                        <li>📈 <strong>Directing Traffic:</strong> Clear Call-to-Actions increased Link Clicks by
+                            1,500%.</li>
+                    </ul>
+                </div>
+
+                <!-- Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-icon">👁️</span>
+                        <span class="metric-number">1.3M</span>
+                        <span class="metric-label">Views</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">💬</span>
+                        <span class="metric-number">36K+</span>
+                        <span class="metric-label">Interactions</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">⚡</span>
+                        <span class="metric-number">67%</span>
+                        <span class="metric-label">Faster Reply</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">🎯</span>
+                        <span class="metric-number">+1500%</span>
+                        <span class="metric-label">Link Clicks</span>
+                    </div>
+                </div>
+
+                <p style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">
+                    * The strategy succeeded in reaching 85% new audience (Non-followers), proving the content's
+                    virality effectiveness. Using images of well-known F1 drivers with local Saudi slang was key to
+                    precise targeting.
+                </p>
+            </div>
+
+            <!-- Content AR -->
+            <div class="content-ar">
+                <h1 style="margin-bottom: 0.5rem;">إطلاق موسم الشتاء: استراتيجية Horizon لجواكت الـ F1</h1>
+                <p style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: 2rem;">علامة تجارية: Horizon
+                </p>
+
+                <img src="images/horizon/saudi-fashion.png" alt="Horizon F1 Collection"
+                    style="width: 100%; border-radius: 12px; margin-bottom: 3rem; object-fit: cover; max-height: 500px;">
+
+                <h2 style="margin-bottom: 1rem;">1. ملخص المشروع (Project Overview)</h2>
+                <p style="margin-bottom: 3rem; max-width: 800px; color: var(--color-text-muted); line-height: 1.8;">
+                    في سوق الأزياء الشتوية المزدحم، كان التحدي هو إطلاق كوليكشن جواكت مستوحى من سباقات الـ F1 للسوق
+                    السعودي. بصفتي Social Media Specialist، قمت بصياغة استراتيجية محتوى ركزت على دمج 'حماس السباقات' مع
+                    'جودة المنتج'، وإدارة الزخم الهائل من العملاء لتحويل المشاهدات إلى مبيعات.
+                </p>
+
+                <h2 style="margin-bottom: 1rem;">2. استراتيجية المحتوى (The Visual Strategy)</h2>
+                <p style="color: var(--color-text-muted);">لم نعتمد على العشوائية؛ بل قمنا بتقسيم المحتوى بناءً على رحلة
+                    العميل (Funnel) لمعالجة تخوفاته وإقناعه بالشراء:</p>
+
+                <div class="strategy-grid">
+                    <!-- Pair 1: Quality Assurance -->
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-hamilton.jpg" class="strategy-img" alt="ضمان الجودة - هاميلتون">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">الجودة أولاً: الخطف البصري</h3>
+                            <p>صورة هاميلتون تعطي انطباع "بريميوم" فوري. التركيز على تفاصيل باتش "فيراري" لإثبات جودة
+                                الخامة.</p>
+                            <div class="quote-box">"جودة تبان من أول لمسة."</div>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-liam.jpg" class="strategy-img" alt="ضمان الجودة - تطريز">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">علاج مخاوف العميل</h3>
+                            <p>مخاطبة الخوف الأكبر "الطباعة اللي بتقشر" بشكل مباشر. زوم على التطريز لإثبات المصداقية.
+                            </p>
+                            <div class="quote-box">"تطريز... مو طباعة."</div>
+                        </div>
+                    </div>
+
+                    <!-- Pair 2: Exclusivity -->
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-kimi.jpg" class="strategy-img" alt="التميز - كيمي">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">التميز والتفرد</h3>
+                            <p>كيمي أنتونيلي يمثل الجيل الجديد والستايل المختلف. نستهدف هنا من يبحث عن الاختلاف.</p>
+                            <div class="quote-box">"ستايل يخليك دايم متميز."</div>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-leclerc-2.jpg" class="strategy-img" alt="موديلات محدودة - لوكلير">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">موديلات محدودة</h3>
+                            <p>لوكلير يستعرض الجاكت لخلق الرغبة (Desire). التركيز على أن الموديلات كمياتها محدودة.</p>
+                            <div class="quote-box">"موديلات محدودة بذوق مختلف."</div>
+                        </div>
+                    </div>
+
+                    <!-- Pair 3: Social Proof & Urgency -->
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-leclerc-1.jpg" class="strategy-img" alt="آراء العملاء والخصم">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">الدليل الاجتماعي والمحفزات</h3>
+                            <p>استخدام صيغة "الريفيو" مع كود خصم (YO15) وشحن مجاني لتسريع قرار الشراء.</p>
+                            <div class="quote-box">"آراؤكم.. والشحن علينا."</div>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <img src="images/horizon/f1-isack.jpg" class="strategy-img" alt="الاستعجال - ايزاك">
+                        <div class="strategy-content">
+                            <h3 class="strategy-title">خلق الاستعجال (Pass FOMO)</h3>
+                            <p>ايزاك هاجر مع خلفية شتوية. تذكير العميل ببرودة الجو القادمة لتحفيزه على الشراء الآن.</p>
+                            <div class="quote-box">"قبل ما يقوى البرد."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-bg-light); padding: 2rem; border-radius: 12px; margin: 3rem 0;">
+                    <h2 style="margin-bottom: 1rem;">3. إدارة المجتمع والأداء (Community Management)</h2>
+                    <p style="margin-bottom: 1.5rem;">المحتوى القوي خلق طوفان من الرسائل. هنا جاء دوري في إدارة الـ
+                        Moderation بذكاء لضمان عدم ضياع الفرص:</p>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px;">
+                            ⚡
+                            <strong>تحطيم رقم سرعة الرد:</strong> قللت زمن الاستجابة بنسبة 67% (ليصل إلى 3 ساعات فقط
+                            بدلاً من 10)، مما حافظ على "سخونة" العميل (Hot Leads).
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            📥
+                            <strong>إدارة الزخم:</strong> التعامل مع 970+ محادثة واستفسار حول المقاسات والأسعار بدقة
+                            واحترافية.
+                        </li>
+                        <li>📈 <strong>توجيه
+                                الترافيك:</strong> بسبب الـ Call-to-Action الواضح في التصاميم، زادت نقرات الرابط (Link
+                            Clicks) بنسبة 1,500%.</li>
+                    </ul>
+                </div>
+
+                <!-- Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-icon">👁️</span>
+                        <span class="metric-number">1.3M</span>
+                        <span class="metric-label">المشاهدات</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">💬</span>
+                        <span class="metric-number">36K+</span>
+                        <span class="metric-label">التفاعلات</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">⚡</span>
+                        <span class="metric-number">67%</span>
+                        <span class="metric-label">سرعة الرد</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">🎯</span>
+                        <span class="metric-number">+1500%</span>
+                        <span class="metric-label">نقرات الرابط</span>
+                    </div>
+                </div>
+
+                <p style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">
+                    * نجحت الاستراتيجية في الوصول لـ 85% من الجمهور الجديد (Non-followers)، مما يثبت فعالية المحتوى في
+                    الانتشار الفيروسي (Virality). استخدام صور سائقي فورمولا 1 المعروفين (مثل هاميلتون ولوكلير) مع عبارات
+                    باللهجة السعودية البيضاء ('مو طباعة'، 'رهيب') كان المفتاح لجذب الفئة المستهدفة بدقة.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>M. El-Deeb</h4>
+                    <p data-i18n="heroDesc">Digital Marketing Specialist focused on ROI and data-driven growth.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="quickLinks">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="home">Home</a></li>
+                        <li><a href="portfolio.html" data-i18n="portfolio">Portfolio</a></li>
+                        <li><a href="resume.html" data-i18n="resume">Resume</a></li>
+                        <li><a href="contact.html" data-i18n="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="connect">Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/mohammed-eldeeb-8d9" target="_blank" class="icon-btn"><i
+                                class='bx bxl-linkedin'></i></a>
+                        <a href="https://www.tiktok.com/@mohammed.eldeeb148" target="_blank" class="icon-btn"><i
+                                class='bx bxl-tiktok'></i></a>
+                        <a href="https://wa.me/+201000187366" target="_blank" class="icon-btn"><i
+                                class='bx bxl-whatsapp'></i></a>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">mohammed22eldeeb@gmail.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script> <span data-i18n="copyright">Mohammed El-Deeb.
+                    All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
